@@ -1,0 +1,77 @@
+{% extends "tracking/base_layout.html" %}
+{% load static %}
+
+{% block extra_css %}
+
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h1 class="mt-5">A Browser Fingerprinting Demo</h1>
+        <p class="lead">Your browser fingerprint was computed inside your device but was not sent to anyone else. See details bellow.</p>
+          {% if form %}
+            <form method="post">
+                <p>
+                    {% csrf_token %}
+                    {{ form.as_p}}
+                    <input class = "btn btn-danger" type="submit" value="Submit fingerprint">
+                </p>
+            </form>
+          <ul class="list-unstyled">
+            <li>If you want us to remember your nickname and fingerprint.</li>
+            <li>Fill your nickname and click "Submit" button.</li>
+          </ul>
+          {% endif %}
+          {% if fp %}
+          <p class="lead">For the fingerprint {{fp}}</p>
+          <a href="{% url 'tracking:fingerprint' %}"><button type="button" class="btn btn-primary">Try again</button></a>
+          {% endif %}
+          {% if visitors %}
+          <ul class="list-unstyled">
+            <li>The following visitors had the same fingerprint: </li>
+          </ul>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Visitor</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for visitor in visitors %}
+              <tr><td>{{ visitor.name}}</td><td>{{visitor.visit_date}}</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% endif %}
+          {% if not fp %}
+          <ul class="list-unstyled">
+            <li>Or just check if the same fingerprint has been previously submitted.</li>
+          </ul>
+          <form method="get">
+                <p>
+                    <input type="hidden" name="fp" class="form-control" id="fp2">
+                    <input class = "btn btn-success" type="submit" value="Check">
+                </p>
+          </form>
+          {% endif %}
+          <p class="lead">You can see bellow the data used to compute your device fingerprint.</p>
+      </div>
+    </div>
+    <div class = "row">
+      <div class="col-sm-6">
+        <table class="table table-sm" >
+          <tbody id = "results">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_scripts %}
+  <script src="{% static "tracking/js/main.js" %}"></script>
+  <script src="{% static "tracking/js/fingerprint2.js" %}"></script>
+{% endblock %}

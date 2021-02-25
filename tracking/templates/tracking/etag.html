@@ -1,0 +1,22 @@
+{% extends "tracking/base_layout.html" %}
+{% load static %}
+
+{% block extra_css %}
+
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h1 class="mt-5">A Browser Etag Tracking Demo</h1>
+        <p class="lead">Your etag identifier is: {{ etag }}.</p>
+          <p class="lead">Reload the page or close the browser and come back to this page and your identifier will remain.</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_scripts %}
+
+{% endblock %}
