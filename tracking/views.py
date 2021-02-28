@@ -12,6 +12,13 @@ from .models import Visitor
 from random import randint
 
 
+class IndexView(View):
+    template_name = 'tracking/index.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+
 class FingerprintView(View):
     template_name = 'tracking/fingerprint.html'
 

@@ -1,4 +1,6 @@
 {% load static %}
+{% load cookiebanner %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +24,7 @@
 </head>
 
 <body>
-
+  {% cookiebanner_modal %}
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">

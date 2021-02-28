@@ -4,6 +4,7 @@ from . import views
 
 app_name = 'tracking'
 urlpatterns = [
+    path('', views.IndexView.as_view(), name='index'),
     path('fp/', views.FingerprintView.as_view(), name='fingerprint'),
     path('fp/<slug:fp>/', views.DetailView.as_view(), name='detail'),
     path('etag/', views.EtagView.as_view(), name='etag'),

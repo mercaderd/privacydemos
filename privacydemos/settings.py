@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = 'rl&ouv%h3mic%dy002*)7zkfazpec@#hidzp068lwh5hbm%v6j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1','localhost']
 
 
 # Application definition
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cookiebanner',
+
 ]
 
 MIDDLEWARE = [
@@ -102,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -123,3 +125,36 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+COOKIEBANNER = {
+    "title": _("Cookie settings"),
+    "header_text": _("We are using cookies on this website. All of them are essential for security purposes and demo purposes. In this site we show how cookies and other technics are used for tracking purposes but we will no track you."),
+    "footer_text": _("Accept cookies for a full demo"),
+    "footer_links": [
+        {
+            "title": _("Privacy"),
+            "href": "/privacy"
+        },
+    ],
+    "groups": [
+        {
+            "id": "essential",
+            "name": _("Essential"),
+            "description": _("Essential cookies allow this page to work."),
+            "cookies": [
+                {
+                    "pattern": "cookiebanner",
+                    "description": _("Meta cookie for the cookies that are set."),
+                },
+                {
+                    "pattern": "csrftoken",
+                    "description": _("This cookie prevents Cross-Site-Request-Forgery attacks."),
+                },
+                {
+                    "pattern": "sessionid",
+                    "description": _("This cookie is necessary to allow logging in, for example."),
+                },
+            ],
+        },
+    ],
+}
