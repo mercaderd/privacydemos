@@ -127,6 +127,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+#CSRF_USE_SESSIONS = True
+CSRF_COOKIE_AGE = 300
+
 COOKIEBANNER = {
     "title": _("Cookie settings"),
     "header_text": _("We are using cookies on this website. All of them are essential for security purposes and demo purposes. In this site we show how cookies and other technics are used for tracking purposes but we will no track you."),
