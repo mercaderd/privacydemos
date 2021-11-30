@@ -2,3 +2,9 @@
 /venv/
 /tracking/migrations/0001_initial.py
 /staticfiles/
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media
