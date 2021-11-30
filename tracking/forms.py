@@ -1,12 +1,14 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Visitor
+from captcha.fields import CaptchaField
 
 
 class VisitorForm(ModelForm):
+    captcha = CaptchaField()
     class Meta:
         model = Visitor
-        fields = ['name', 'fp', 'components']
+        fields = ['name', 'fp', 'components', 'captcha']
         widgets = {'fp': forms.HiddenInput(), 'components': forms.HiddenInput()}
 
     def __init__(self, *args, **kwargs):

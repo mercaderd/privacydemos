@@ -1,0 +1,1 @@
+web: gunicorn privacydemos.wsgi --log-file -

@@ -8,6 +8,6 @@ class Visitor(models.Model):
     visit_date = models.DateTimeField(auto_now_add=True)
     fp = models.SlugField(max_length=32)
     components = models.JSONField(null=True)
-
+ 
     def __str__(self):
         return self.name
